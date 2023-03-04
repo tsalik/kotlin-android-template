@@ -9,6 +9,7 @@ junit-ui-test = "1.1.5"
 espresso = "3.5.1"
 android-gradle-plugin = "7.4.2"
 kotlin = "1.7.0"
+detekt = "1.22.0"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -23,6 +24,7 @@ espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "esp
 junit-ui-test-compose = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose" }
+detekt_formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
 
 [bundles]
 compose = ["compose-ui", "compose-preview", "material3-compose"]
@@ -33,3 +35,4 @@ compose-debug = ["compose-ui-tooling", "compose-ui-test-manifest"]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
 android-library = { id = "com.android.library", version.ref = "android-gradle-plugin" }
 android-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
