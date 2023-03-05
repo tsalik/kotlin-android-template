@@ -7,7 +7,6 @@ println("Running pre-push hook")
 
 fun error(message: String, throwable: Throwable? = null, statusCode: Int = 1) {
     System.err.println("❌\t$message")
-    System.exit(status)
 }
 
 fun String.runWithRedirect(directory: File? = null) {
@@ -19,6 +18,7 @@ fun String.runWithRedirect(directory: File? = null) {
         .waitFor()
     if (status == ProcessResult.ERROR) {
         error("Failed running: $this")
+        System.exit(status)
     }
 }
 
