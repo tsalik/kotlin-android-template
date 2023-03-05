@@ -3,9 +3,11 @@ import java.io.File
 
 println("Running pre-push hook")
 "./gradlew detekt".runWithRedirect()
+"./gradlew test".runWithRedirect()
 
 fun error(message: String, throwable: Throwable? = null, statusCode: Int = 1) {
     System.err.println("❌\t$message")
+    System.exit(status)
 }
 
 fun String.runWithRedirect(directory: File? = null) {
@@ -18,7 +20,6 @@ fun String.runWithRedirect(directory: File? = null) {
     if (status == ProcessResult.ERROR) {
         error("Failed running: $this")
     }
-    System.exit(status)
 }
 
 object ProcessResult {
