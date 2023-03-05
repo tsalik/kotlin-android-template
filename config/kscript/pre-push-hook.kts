@@ -2,18 +2,26 @@
 import java.io.File
 
 println("Running pre-push hook")
-detekt()
+"./gradlew detekt".runWithRedirect()
+"./gradlew test".runWithRedirect()
 
-
-fun detekt() {
-    "./gradlew detekt".runWithRedirect()
+fun error(message: String, throwable: Throwable? = null, statusCode: Int = 1) {
+    System.err.println("❌\t$message")
 }
 
-fun String.runWithRedirect(directory: File? = null): Int {
-    return ProcessBuilder("/bin/sh", "-c", this)
+fun String.runWithRedirect(directory: File? = null) {
+    val status = ProcessBuilder("/bin/sh", "-c", this)
         .redirectErrorStream(true)
         .inheritIO()
-        .directory(null)
+        .directory(directory)
         .start()
         .waitFor()
+    if (status == ProcessResult.ERROR) {
+        error("Failed running: $this")
+        System.exit(status)
+    }
+}
+
+object ProcessResult {
+    const val ERROR = 1
 }
