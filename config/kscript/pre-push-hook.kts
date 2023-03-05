@@ -5,23 +5,22 @@ println("Running pre-push hook")
 "./gradlew detekt".runWithRedirect()
 
 fun error(message: String, throwable: Throwable? = null, statusCode: Int = 1) {
-    System.err.println("❌\t${ConsoleColors.ANSI_RED}$message${ConsoleColors.ANSI_RESET}")
+    System.err.println("❌\t$message")
 }
 
 fun String.runWithRedirect(directory: File? = null) {
     val status = ProcessBuilder("/bin/sh", "-c", this)
         .redirectErrorStream(true)
         .inheritIO()
-        .directory(null)
+        .directory(directory)
         .start()
         .waitFor()
-    if (status == 1) {
+    if (status == ProcessResult.ERROR) {
         error("Failed running: $this")
     }
     System.exit(status)
 }
 
-object ConsoleColors {
-    const val ANSI_RED = "\u001B[0m"
-    const val ANSI_RESET = "\u001B[31m"
+object ProcessResult {
+    const val ERROR = 1
 }
