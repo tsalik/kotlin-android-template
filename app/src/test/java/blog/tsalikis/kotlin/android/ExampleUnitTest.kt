@@ -1,6 +1,6 @@
 package blog.tsalikis.kotlin.android
 
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 /**
