@@ -24,4 +24,4 @@ jobs:
         uses: gradle/actions/setup-gradle@v4.1.0
 
       - name: Build with Gradle
-        run: ./gradlew detekt assembleRelease testRelease
+        run: ./gradlew detekt lintRelease assembleRelease testRelease
