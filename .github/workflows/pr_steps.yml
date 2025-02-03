@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: Run static checks and build
 
     steps:
       - name: Checkout repository
